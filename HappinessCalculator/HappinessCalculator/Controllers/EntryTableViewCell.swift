@@ -32,9 +32,13 @@ class EntryTableViewCell: UITableViewCell {
     }
     
     func createObserver(){
-        NotificationCenter.default.addObserver(self, selector: #selector(updateUI), name: notificationKey, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(recalculatehappy), name: notificationKey, object: nil)
     }
     
+    @objc func recalculatehappy(notification: NSNotification){
+        guard let avgHappy = notification.object as? Int else {return}
+        updateUI(avgHappy: avgHappy)
+    }
     @objc func updateUI(avgHappy: Int){
         guard let entry = entry else { return }
         titleLabel.text = entry.title

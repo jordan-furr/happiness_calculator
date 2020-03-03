@@ -12,9 +12,10 @@ import UIKit
 
 class EntryListTableViewController: UITableViewController {
 
-    var avgHappy = 0 {
+    var avgHappy: Int = 0 {
         didSet {
             NotificationCenter.default.post(name: notificationKey, object: self.avgHappy)
+            self.title = "average happiness: \(avgHappy)"
         }
     }
     
