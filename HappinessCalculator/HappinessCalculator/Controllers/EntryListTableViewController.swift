@@ -26,7 +26,7 @@ class EntryListTableViewController: UITableViewController {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "EntryCell", for: indexPath) as? EntryTableViewCell else { return UITableViewCell()}
         
         let entry = EntryController.entries[indexPath.row]
-        cell.setEntry(entry: entry, avgHappy: 0)
+        cell.setEntry(entry: entry, avgHappy: avgHappy)
         cell.delegate = self
         return cell
     }
