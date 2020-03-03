@@ -8,10 +8,15 @@
 
 import UIKit
 
+ let notificationKey = Notification.Name(rawValue: "didChangeHappiness")
+
 class EntryListTableViewController: UITableViewController {
 
-    
-    var avgHappy = 0
+    var avgHappy = 0 {
+        didSet {
+            NotificationCenter.default.post(name: notificationKey, object: self.avgHappy)
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

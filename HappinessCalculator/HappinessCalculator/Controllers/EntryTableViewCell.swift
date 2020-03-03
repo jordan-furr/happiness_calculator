@@ -25,14 +25,17 @@ class EntryTableViewCell: UITableViewCell {
     var entry: Entry?
     weak var delegate: EntryTableViewCellDelegate?
     
-    
     //MARK: - Helper Functions
     func setEntry(entry: Entry, avgHappy: Int){
         self.entry = entry
         updateUI(avgHappy: avgHappy)
     }
     
-    func updateUI(avgHappy: Int){
+    func createObserver(){
+        NotificationCenter.default.addObserver(self, selector: #selector(updateUI), name: notificationKey, object: nil)
+    }
+    
+    @objc func updateUI(avgHappy: Int){
         guard let entry = entry else { return }
         titleLabel.text = entry.title
         entrySwitch.isOn = entry.isIncluded
